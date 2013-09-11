@@ -1,9 +1,28 @@
 .jumbotron
   %h1
-    Nerdy, but proud
+    Be nerdy, be proud
   %p
-    This example is a quick exercise to
-    illustrate how the default, static and fixed
-    to top navbar work. It includes the responsive CSS and
-    HTML, so it also adapts to your viewport and device.
-  = image_tag 'me.png'
+    Welcome to my website pal. I built this just because I love programming.
+    So, while others spent time writing their resumes by MS word, I thought maybe
+    I'd just put a personal site online so people could just know me by simply cliking
+    on the 'spam' link that I'd send to them. How cool is that huh? Anyway, welcome
+    and take a look around.
+  
+.row
+  .col-lg-6
+    %h2 About me
+    %p
+      I am a mortal and more...
+    = image_tag 'wanted.jpg', class: 'portal img-thumbnail'
+  .col-lg-6
+    %h2 My occupation
+    %p
+      I'm a programmer and more...
+    = image_tag 'suitcase.png', class: 'portal img-thumbnail'
+.row
+  .col-lg-6
+    %h2 My CV
+    %p
+      If you're HR manager, please read more...
+    = image_tag 'cv.jpg', class: 'portal img-thumbnail'
+    
