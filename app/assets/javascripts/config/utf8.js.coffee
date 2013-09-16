@@ -1,4 +1,4 @@
-app.config ($httpProvider) ->
+app.config ['$httpProvider', ($httpProvider) ->
   $httpProvider.defaults.transformRequest.push (data, headersGetter) ->
     utf8_data = data
     unless angular.isUndefined(data)
@@ -6,3 +6,4 @@ app.config ($httpProvider) ->
       d["_utf8"] = "&#9731;"
       utf8_data = angular.toJson(d)
     utf8_data
+  ]
