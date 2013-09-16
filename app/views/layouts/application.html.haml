@@ -1,14 +1,11 @@
-%html
+%html{data: {ng_app: 'app'}}
   %head
     %meta{charset: 'utf-8'}
-    %title= @title.blank? ? 'More than nerds' : "#{@title} | More than nerds"
+    %title More than nerds
     %meta{name: 'viewport', content: 'width=device-width, initial-scale=1.0'}/
     = stylesheet_link_tag 'application', :media => 'all'
     = javascript_include_tag 'application'
     = csrf_meta_tags
   %body
     .container
-      = render 'layouts/header'
-      = render 'layouts/notification'
       = yield
-      = render 'layouts/footer'

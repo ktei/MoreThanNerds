@@ -10,19 +10,21 @@
   
 .row
   .col-lg-6
-    %h2 About me
+    %a{href: '#/about_me'}
+      %h2 About me
     %p
       I am a mortal and more...
-    = image_tag 'wanted.jpg', class: 'portal img-thumbnail'
+    %img{src: '/assets/wanted.jpg', class: 'portal img-thumbnail'}
   .col-lg-6
-    %h2 My occupation
+    %a{href:"#"}
+      %h2 My occupation
     %p
       I'm a programmer and more...
-    = image_tag 'suitcase.png', class: 'portal img-thumbnail'
+    %img{src: '/assets/suitcase.png', class: 'portal img-thumbnail'}
 .row
   .col-lg-6
-    %h2 My CV
+    %a{href:"#"}
+      %h2 My CV
     %p
       If you're HR manager, please read more...
-    = image_tag 'cv.jpg', class: 'portal img-thumbnail'
-    
+    %img{src: '/assets/cv.jpg', class: 'portal img-thumbnail'}
