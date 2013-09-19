@@ -3,7 +3,6 @@ require 'spec_helper'
 describe MessagesController do
   
   describe "GET 'index'" do
-    
     before(:each) do
       @msg1 = FactoryGirl.create(:message, :created_at => 1.day.ago)
       @msg2 = FactoryGirl.create(:message, :created_at => 1.year.ago)
@@ -57,9 +56,6 @@ describe MessagesController do
         post :create, :message => @input.merge({email: ''}), :format => :json
       end.should_not change(Message, :count)
     end
-    
-    
-    
   end
-  
+ 
 end

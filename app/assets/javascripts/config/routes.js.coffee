@@ -7,7 +7,11 @@ app
         templateUrl: '/assets/home/index.html'
       })
       .when('/about_me', {
-        ontroller: 'HomeCtrl'
+        controller: 'HomeCtrl'
         templateUrl: '/assets/home/about_me.html'
+      })
+      .when('/messages', {
+        controller: 'MessagesCtrl'
+        templateUrl: '/assets/messages/index.html'
       })
   ])

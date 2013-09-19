@@ -1,3 +1,5 @@
+@import "mixins";
+
 body {
   padding-top: 70px;
 }
@@ -51,5 +53,45 @@ img {
   &.portal {
     width: 256px;
     height: 219px;
+  }
+}
+
+.message {
+  .avatar {
+    float:left;
+    img {
+      width:58px;
+      max-width:58px;
+      padding:2px;
+      margin-right:10px;
+    }
+  }
+  .text {
+    .head {
+      font-weight:bold;
+      time {
+        font-weight:normal;
+        float:right;
+        color:gray;
+      }
+    }
+    .body {
+      
+    }
+  }
+  margin-bottom:20px;
+}
+
+.post-widget {
+  textarea {
+    resize:vertical;
+    height:75px;
+    border-radius: 4px 4px 0px 0px;
+    
+  }
+  .well {
+    border-radius: 0px 0px 4px 4px;
+    padding: 5px;
+    @include box-shadow(none);
   }
 }
