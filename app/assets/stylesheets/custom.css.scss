@@ -93,5 +93,20 @@ img {
     border-radius: 0px 0px 4px 4px;
     padding: 5px;
     @include box-shadow(none);
+    input[type=text], input[type=email] {
+      margin-bottom: 5px;
+    }
   }
+}
+
+.error {
+  color: red;
+}
+
+.ng-valid.ng-dirty { 
+  border-color: #468847;
+}
+
+.ng-invalid.ng-dirty {
+  border-color: #b94a48; 
 }

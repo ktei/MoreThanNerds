@@ -1,40 +1,35 @@
 %h1 Message board
-%form.post-widget{role:'form'}
-  %textarea.form-control
+%form.post-widget{role: 'form', name: 'postMessageForm'}
+
+  %textarea.form-control{name: 'content', placeholder: 'Leave me message...', 
+    data: {ng_model: 'content', ng_required: 'true', ng_maxlength: '2500', 
+    ng_focus: 'onMessageFormFocus()', ng_class: "getCss(postMessageForm.content)"}}}
   .well.clearfix
-    %button.btn.btn-primary.pull-right Post
-          
-.row.message
-  .col-lg-12
-    .avatar
-      %a{href:'#'}
-        %img.img-rounded{src:'http://placehold.it/58x58', alt:'user'}
-    .text
-      .head
-        rui
-        %time <em>a minute ago</em>
-      .body
-        good stuff aweg awhawh awe arja ekrtk rtkawg awehawe awjawjr
-        good stuff aweg awhawh awe arja ekrtk rtkawg awehawe awjawjr
-        good stuff aweg awhawh awe arja ekrtk rtkawg awehawe awjawjr
-        good stuff aweg awhawh awe arja ekrtk rtkawg awehawe awjawjr
-        good stuff aweg awhawh awe arja ekrtk rtkawg awehawe awjawjr
-        good stuff aweg awhawh awe arja ekrtk rtkawg awehawe awjawjr
-        good stuff aweg awhawh awe arja ekrtk rtkawg awehawe awjawjr
-        good stuff aweg awhawh awe arja ekrtk rtkawg awehawe awjawjr
+    .row
+      .col-lg-12
+        %label{ng_show: 'showAuthorInputs'} Please provide your information:
         
-.row.message
-  .col-lg-12
-    .avatar
-      %a{href:'#'}
-        %img.img-rounded{src:'http://placehold.it/58x58', alt:'user'}
-    .text
-      .head
-        rui
-        %time <em>a minute ago</em>
-      .body
-        good stuff aweg awhawh awe arja ekrtk rtkawg awehawe awjawjr
-        good stuff aweg awhawh awe arja ekrtk rtkawg awehawe awjawjr
+      .col-lg-6{data: {ng_class: "getCss(postMessageForm.author)"}}
+        %input.form-control{name: 'author', placeholder: 'Name', type: 'text', 
+          data: {ng_model: 'author', ng_show: 'showAuthorInputs', ng_required: 'true', ng_maxlength: '50'}}
+          
+      .col-lg-6{data: {ng_class: "getCss(postMessageForm.email)"}}
+        %input.form-control{name: 'email', placeholder: 'Email', type: 'email', 
+          data: {ng_model: 'email', ng_show: 'showAuthorInputs', ng_required: 'true', ng_maxlength: '200'}}
+    
+    %button.btn.btn-primary.pull-right{data: {ng_disabled: '!canSave()'}} Post
+    
+.messages{data: {ng_repeat: 'message in messages'}}
+  .row.message
+    .col-lg-12
+      .avatar
+        %a{href: '#'}
+          %img.img-rounded{src: '{{message.avatar}}', alt: 'user'}
+      .text
+        .head
+          {{message.author}}
+          %time <em>{{message.created_at}}</em>
+        .body {{message.content}}
 
         
             
