@@ -1,7 +1,7 @@
 app.controller 'MessagesCtrl', ['$scope', '$cookieStore', 'messageSvc', ($scope, $cookieStore, messageSvc) ->
   $scope.content = ''
-  $scope.author = $cookieStore.get('messageDefaultAuthor') || ''
-  $scope.email = $cookieStore.get('messageDefaultEmail') || ''
+  $scope.author = ''#$cookieStore.get('messageDefaultAuthor') || ''
+  $scope.email = ''#$cookieStore.get('messageDefaultEmail') || ''
   $scope.messages = []
   $scope.submitting = false
   $scope.fetching = false
@@ -29,8 +29,8 @@ app.controller 'MessagesCtrl', ['$scope', '$cookieStore', 'messageSvc', ($scope,
   $scope.postMessage = ->
     if $scope.canSave()
       $scope.submitting = true
-      $cookieStore.put 'messageDefaultAuthor', $scope.author
-      $cookieStore.put 'messageDefaultEmail', $scope.email
+      #$cookieStore.put 'messageDefaultAuthor', $scope.author
+      #$cookieStore.put 'messageDefaultEmail', $scope.email
       
       promise = messageSvc.post {
         author: $scope.author
