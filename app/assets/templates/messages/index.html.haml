@@ -1,5 +1,5 @@
 %h1 Message board
-%form.post-widget{role: 'form', name: 'postMessageForm'}
+%form.post-widget{role: 'form', name: 'postMessageForm', data: {ng_submit: 'postMessage()'}}
 
   %textarea.form-control{name: 'content', placeholder: 'Leave me message...', 
     data: {ng_model: 'content', ng_required: 'true', ng_maxlength: '2500', 
@@ -9,15 +9,15 @@
       .col-lg-12
         %label{ng_show: 'showAuthorInputs'} Please provide your information:
         
-      .col-lg-6{data: {ng_class: "getCss(postMessageForm.author)"}}
+      .col-md-6{data: {ng_class: "getCss(postMessageForm.author)"}}
         %input.form-control{name: 'author', placeholder: 'Name', type: 'text', 
           data: {ng_model: 'author', ng_show: 'showAuthorInputs', ng_required: 'true', ng_maxlength: '50'}}
           
-      .col-lg-6{data: {ng_class: "getCss(postMessageForm.email)"}}
+      .col-md-6{data: {ng_class: "getCss(postMessageForm.email)"}}
         %input.form-control{name: 'email', placeholder: 'Email', type: 'email', 
           data: {ng_model: 'email', ng_show: 'showAuthorInputs', ng_required: 'true', ng_maxlength: '200'}}
     
-    %button.btn.btn-primary.pull-right{data: {ng_disabled: '!canSave()'}} Post
+    %input.btn.btn-primary.pull-right{type: 'submit', value: 'post', data: {ng_disabled: '!canSave()'}}
     
 .messages{data: {ng_repeat: 'message in messages'}}
   .row.message

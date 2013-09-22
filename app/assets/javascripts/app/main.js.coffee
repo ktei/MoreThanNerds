@@ -1,2 +1,2 @@
-@app = angular.module('app', ['ui.router'])
+@app = angular.module('app', ['ngRoute'])
 

@@ -1,7 +1,7 @@
-app.controller 'MessagesCtrl', ['$scope', ($scope) ->
+app.controller 'MessagesCtrl', ['$scope', '$cookieStore', 'messageSvc', ($scope, $cookieStore, messageSvc) ->
   $scope.content = ''
-  $scope.author = ''
-  $scope.email = ''
+  $scope.author = $cookieStore.get('messageDefaultAuthor')
+  $scope.email = $cookieStore.get('messageDefaultEmail')
   $scope.idle = true
   $scope.showAuthorInputs = false
   
@@ -13,8 +13,8 @@ app.controller 'MessagesCtrl', ['$scope', ($scope) ->
     
   $scope.getCss = (ngModelCtrl) ->
     {
-      error: ngModelCtrl.$invalid && ngModelCtrl.$dirty
-      success: ngModelCtrl.$valid && ngModelCtrl.$dirty
+      error: ngModelCtrl.$invalid and ngModelCtrl.$dirty
+      success: ngModelCtrl.$valid and ngModelCtrl.$dirty
     }
     
   $scope.canSave = ->
@@ -22,6 +22,29 @@ app.controller 'MessagesCtrl', ['$scope', ($scope) ->
     $scope.postMessageForm.$valid and 
     $scope.idle
     
+  $scope.postMessage = ->
+    if $scope.canSave()
+      $scope.idle = true
+      $cookieStore.put 'messageDefaultAuthor', $scope.author
+      $cookieStore.put 'messageDefaultEmail', $scope.email
+      
+      promise = messageSvc.post {
+        author: $scope.author
+        email: $scope.email
+        content: $scope.content
+      }
+      promise.then ((response) ->
+        $scope.idle = true
+        data = response.data
+        if data.success
+          $scope.messages.push data.message
+          $scope.content = ''
+          $scope.postMessageForm.$setPristine()
+        ), ((response) ->
+          $scope.idle = true
+        )
+      
+      
   $scope.messages = [
     {
       author: 'rui'

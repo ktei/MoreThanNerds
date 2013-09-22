@@ -11,17 +11,20 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery/jquery.cookie
 //= require bootstrap/bootstrap
 
-//= require angular/angular.min
-//= require angular/angular-ui-router.min
+//= require angular/angular-1.2.0-rc.min
+//= require angular/angular-route.min
 
 //= require app/main
-//= require_tree ./config
+//= require_tree ./app/services
+//= require_tree ./app/config
 //= require_tree ./app/controllers
 //
 //= require_self
 
+// Code below is from https://gist.github.com/eliotsykes/5394631
 app.directive('ngFocus', ['$parse', function($parse) {
   return function(scope, element, attr) {
     var fn = $parse(attr['ngFocus']);
