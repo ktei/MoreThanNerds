@@ -1,7 +1,7 @@
 app.controller 'MessagesCtrl', ['$scope', '$cookieStore', 'messageSvc', ($scope, $cookieStore, messageSvc) ->
   $scope.content = ''
-  $scope.author = $cookieStore.get('messageDefaultAuthor')
-  $scope.email = $cookieStore.get('messageDefaultEmail')
+  $scope.author = $cookieStore.get('messageDefaultAuthor') || ''
+  $scope.email = $cookieStore.get('messageDefaultEmail') || ''
   $scope.messages = []
   $scope.submitting = false
   $scope.fetching = false
