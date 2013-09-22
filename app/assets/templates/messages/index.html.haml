@@ -25,7 +25,7 @@
       .col-lg-12
         .avatar
           %a{href: '#'}
-            %img.img-rounded{src: '{{message.gravatar_url}}', alt: 'user'}
+            %img.img-rounded{data: {ng_src: '{{message.gravatar_url}}'}, alt: 'user'}
         .text
           .head
             {{message.author}}
