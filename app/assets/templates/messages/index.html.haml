@@ -5,7 +5,7 @@
     data: {ng_model: 'content', ng_required: 'true', ng_maxlength: '2500', 
     ng_focus: 'onMessageFormFocus()', ng_class: "getCss(postMessageForm.content)"}}}
   .well.clearfix
-    .row{data: {ng_if: 'showAuthorInputs'}}
+    .row{data: {ng_show: 'showAuthorInputs'}}
       .col-lg-12
         %label Please provide your information:
         
