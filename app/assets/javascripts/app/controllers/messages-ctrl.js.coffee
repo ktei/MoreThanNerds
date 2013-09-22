@@ -2,8 +2,12 @@ app.controller 'MessagesCtrl', ['$scope', '$cookieStore', 'messageSvc', ($scope,
   $scope.content = ''
   $scope.author = $cookieStore.get('messageDefaultAuthor')
   $scope.email = $cookieStore.get('messageDefaultEmail')
-  $scope.idle = true
+  $scope.messages = []
+  $scope.submitting = false
+  $scope.fetching = false
   $scope.showAuthorInputs = false
+  $scope.currentPage = 0
+  $scope.hasMoreToFetch = true
   
   $scope.onMessageFormFocus = ->
     $scope.showAuthorInputs = true
@@ -20,11 +24,11 @@ app.controller 'MessagesCtrl', ['$scope', '$cookieStore', 'messageSvc', ($scope,
   $scope.canSave = ->
     $scope.postMessageForm.$dirty and 
     $scope.postMessageForm.$valid and 
-    $scope.idle
+    not $scope.submitting
     
   $scope.postMessage = ->
     if $scope.canSave()
-      $scope.idle = true
+      $scope.submitting = true
       $cookieStore.put 'messageDefaultAuthor', $scope.author
       $cookieStore.put 'messageDefaultEmail', $scope.email
       
@@ -34,23 +38,40 @@ app.controller 'MessagesCtrl', ['$scope', '$cookieStore', 'messageSvc', ($scope,
         content: $scope.content
       }
       promise.then ((response) ->
-        $scope.idle = true
+        $scope.submitting = false
         data = response.data
         if data.success
-          $scope.messages.push data.message
+          unshiftMessage data.message
           $scope.content = ''
           $scope.postMessageForm.$setPristine()
         ), ((response) ->
-          $scope.idle = true
+          $scope.submitting = false
         )
-      
-      
-  $scope.messages = [
-    {
-      author: 'rui'
-      content: 'agawe awgawe awecviweg awhawh'
-      created_at: 'a minute ago'
-      avatar: 'http://placehold.it/58x58'
-    }
-  ]
+        
+
+  fetch = (page) ->
+    promise = messageSvc.fetch(page)
+    promise.then ((response) ->
+      data = response.data
+      pushMessage m for m in data
+      $scope.hasMoreToFetch = data.length >= 5
+      $scope.fetching = false
+    ), ((response) ->
+      $scope.fetching = false
+    )
+  
+  $scope.fetchMore = ->
+    if $scope.hasMoreToFetch and not $scope.fetching
+      $scope.fetching = true
+      $scope.currentPage += 1
+      fetch $scope.currentPage
+  
+  pushMessage = (message) ->
+    humanize message
+    $scope.messages.push message
+  unshiftMessage = (message) ->
+    humanize message
+    $scope.messages.unshift message
+  humanize = (message) ->
+    message.created_at = $.timeago(message.created_at)
 ]

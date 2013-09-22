@@ -5,31 +5,35 @@
     data: {ng_model: 'content', ng_required: 'true', ng_maxlength: '2500', 
     ng_focus: 'onMessageFormFocus()', ng_class: "getCss(postMessageForm.content)"}}}
   .well.clearfix
-    .row
+    .row{data: {ng_if: 'showAuthorInputs'}}
       .col-lg-12
-        %label{ng_show: 'showAuthorInputs'} Please provide your information:
+        %label Please provide your information:
         
       .col-md-6{data: {ng_class: "getCss(postMessageForm.author)"}}
         %input.form-control{name: 'author', placeholder: 'Name', type: 'text', 
-          data: {ng_model: 'author', ng_show: 'showAuthorInputs', ng_required: 'true', ng_maxlength: '50'}}
+          data: {ng_model: 'author', ng_required: 'true', ng_maxlength: '50'}}
           
       .col-md-6{data: {ng_class: "getCss(postMessageForm.email)"}}
         %input.form-control{name: 'email', placeholder: 'Email', type: 'email', 
-          data: {ng_model: 'email', ng_show: 'showAuthorInputs', ng_required: 'true', ng_maxlength: '200'}}
+          data: {ng_model: 'email', ng_required: 'true', ng_maxlength: '200'}}
     
     %input.btn.btn-primary.pull-right{type: 'submit', value: 'post', data: {ng_disabled: '!canSave()'}}
     
-.messages{data: {ng_repeat: 'message in messages'}}
-  .row.message
-    .col-lg-12
-      .avatar
-        %a{href: '#'}
-          %img.img-rounded{src: '{{message.avatar}}', alt: 'user'}
-      .text
-        .head
-          {{message.author}}
-          %time <em>{{message.created_at}}</em>
-        .body {{message.content}}
+%div.list{'infinite-scroll' => 'fetchMore()'}
+  .messages{data: {ng_repeat: 'message in messages'}}
+    .row.message
+      .col-lg-12
+        .avatar
+          %a{href: '#'}
+            %img.img-rounded{src: '{{message.gravatar_url}}', alt: 'user'}
+        .text
+          .head
+            {{message.author}}
+            %time <em>{{message.created_at}}</em>
+          .body {{message.content}}
+  .progress.progress-striped.active{data: {ng_if: 'fetching'}}
+    .progress-bar{role: 'progressbar', 'aria-valuenow' => '45', 'aria-valuemin' => '0', 'aria-valuemax' => 100, style: 'width: 100%'}
+      %span Loading messages...
 
         
             

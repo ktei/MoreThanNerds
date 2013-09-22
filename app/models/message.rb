@@ -1,4 +1,6 @@
 class Message < ActiveRecord::Base
+  include Gravtastic
+  gravtastic
   
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   
@@ -17,5 +19,11 @@ class Message < ActiveRecord::Base
     
   
   default_scope { order('messages.created_at desc') }
+  
+  def as_json(options = {})
+    options[:methods] = [:gravatar_url]
+    options[:except] = [:id]
+    super(options)
+  end
   
 end

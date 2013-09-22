@@ -12,10 +12,13 @@
 //
 //= require jquery
 //= require jquery/jquery.cookie
+//= require jquery/jquery.timeago
 //= require bootstrap/bootstrap
 
 //= require angular/angular-1.2.0-rc.min
 //= require angular/angular-route.min
+//= require angular/angular-animate.min
+//= require angular/ng-infinite-scroll.min
 
 //= require app/main
 //= require_tree ./app/services
@@ -23,26 +26,3 @@
 //= require_tree ./app/controllers
 //
 //= require_self
-
-// Code below is from https://gist.github.com/eliotsykes/5394631
-app.directive('ngFocus', ['$parse', function($parse) {
-  return function(scope, element, attr) {
-    var fn = $parse(attr['ngFocus']);
-    element.bind('focus', function(event) {
-      scope.$apply(function() {
-        fn(scope, {$event:event});
-      });
-    });
-  }
-}]);
- 
-app.directive('ngBlur', ['$parse', function($parse) {
-  return function(scope, element, attr) {
-    var fn = $parse(attr['ngBlur']);
-    element.bind('blur', function(event) {
-      scope.$apply(function() {
-        fn(scope, {$event:event});
-      });
-    });
-  }
-}]);
