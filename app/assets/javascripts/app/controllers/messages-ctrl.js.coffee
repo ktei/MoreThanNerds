@@ -8,6 +8,8 @@ app.controller 'MessagesCtrl', ['$scope', '$cookieStore', 'messageSvc', ($scope,
   $scope.showAuthorInputs = false
   $scope.currentPage = 0
   $scope.hasMoreToFetch = true
+  $scope.submitBtnText = ->
+    if $scope.submitting then 'Posting...' else 'Post'
   
   $scope.onMessageFormFocus = ->
     $scope.showAuthorInputs = true

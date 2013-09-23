@@ -3,21 +3,21 @@
 
   %textarea.form-control{name: 'content', placeholder: 'Leave me message...', 
     data: {ng_model: 'content', ng_required: 'true', ng_maxlength: '2500', 
-    ng_focus: 'onMessageFormFocus()', ng_class: "getCss(postMessageForm.content)"}}}
+    ng_focus: 'onMessageFormFocus()', ng_disabled: 'submitting'}}
   .well.clearfix
     .row{data: {ng_show: 'showAuthorInputs'}}
       .col-lg-12
         %label Please provide your information:
         
-      .col-md-6{data: {ng_class: "getCss(postMessageForm.author)"}}
+      .col-md-6
         %input.form-control{name: 'author', placeholder: 'Name', type: 'text', 
-          data: {ng_model: 'author', ng_required: 'true', ng_maxlength: '50'}}
+          data: {ng_model: 'author', ng_required: 'true', ng_maxlength: '50', ng_disabled: 'submitting'}}
           
-      .col-md-6{data: {ng_class: "getCss(postMessageForm.email)"}}
+      .col-md-6
         %input.form-control{name: 'email', placeholder: 'Email', type: 'email', 
-          data: {ng_model: 'email', ng_required: 'true', ng_maxlength: '200'}}
+          data: {ng_model: 'email', ng_required: 'true', ng_maxlength: '200', ng_disabled: 'submitting'}}
     
-    %input.btn.btn-primary.pull-right{type: 'submit', value: 'post', data: {ng_disabled: '!canSave()'}}
+    %input.btn.btn-primary.pull-right{type: 'submit', value: '{{submitBtnText()}}', data: {ng_disabled: '!canSave()'}}
     
 %div.list{'infinite-scroll' => 'fetchMore()'}
   %ol.messages{data: {ng_repeat: 'message in messages'}}

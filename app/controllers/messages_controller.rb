@@ -10,6 +10,7 @@ class MessagesController < ApplicationController
   end
   
   def create
+    sleep 2
     respond_to do |format|
       format.json do
         params.permit!
