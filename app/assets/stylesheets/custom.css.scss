@@ -56,30 +56,50 @@ img {
   }
 }
 
-.message {
-  .avatar {
-    float:left;
-    img {
-      width:58px;
-      max-width:58px;
-      padding:2px;
-      margin-right:10px;
-    }
-  }
-  .text {
-    .head {
-      font-weight:bold;
-      time {
-        font-weight:normal;
-        float:right;
-        color:gray;
+ol {
+  margin-top: 0;
+  margin-bottom: 9px;
+  &.messages {
+    padding-left: 0;
+    list-style: none;
+    & > li {
+      .comment {
+        padding: 6px 6px 6px 76px;
+        border-radius: 3px;
+        position: relative;
+        margin-bottom: 20px;
+        .head {
+          width:100%;
+          display: block;
+          &:before, &:after {
+            content: " ";
+            display: table;
+          }
+          &:after {
+            clear: both;
+          }
+          img.avatar {
+            display: block;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width:58px;
+          }
+          h4 {
+            float: left;
+            font-size: 14px;
+            margin-bottom: 2px;
+            margin-top: 6px;
+          }
+          time {
+            float: right;
+            color: #bbb;
+            padding-top: 3px;
+          }
+        }
       }
     }
-    .body {
-      
-    }
   }
-  margin-bottom:20px;
 }
 
 .post-widget {
