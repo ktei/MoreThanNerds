@@ -5,8 +5,7 @@
     Welcome to my website pal. I built this just because I love programming.
     So, while others spent time writing their resumes by MS word, I thought maybe
     I'd just put a personal site online so people could just know me by simply cliking
-    on the 'spam' link that I'd send to them. How cool is that huh? Anyway, welcome
-    and take a look around.
+    on the 'spam' link that I'd send to them. Anyway, be my guest and take a look around.
   
 .row
   .col-lg-6
@@ -15,4 +14,14 @@
     %p
       HR manager? please
       %a{href:'#/cv'} read more...
-    %img{src: '/assets/cv.jpg', class: 'portal img-thumbnail'}
+    %a{href:'#/cv'}
+      %img.portal.img-rounded{src:'/assets/cv-portal.png'}
+    
+  .col-lg-6
+    %a{href:'#/messages'}
+      %h2 Messages
+    %p
+      You can leave me a message
+      %a{href:'#/messages'} here
+    %a{href:'#/messages'}
+      %img.portal.img-rounded{src:'/assets/message-portal.png'}
