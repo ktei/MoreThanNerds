@@ -6,9 +6,9 @@ app
         controller: 'HomeCtrl'
         templateUrl: '/assets/home/index.html'
       })
-      .when('/about_me', {
+      .when('/cv', {
         controller: 'HomeCtrl'
-        templateUrl: '/assets/home/about_me.html'
+        templateUrl: '/assets/home/cv.html'
       })
       .when('/messages', {
         controller: 'MessagesCtrl'
